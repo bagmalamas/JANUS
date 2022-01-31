@@ -1,9 +1,8 @@
-// Ένα Voting χωρίζεται σε δύο μέρη: Στο Smart Contract που επιθυμεί να ξεκινήσει ένα Voting (TMSC/LSC) καθώς και στο Smart Contract που διαχειρίζεται τα Votings (PSC)
-// Για την εκκίνηση ενός Voting, πρέπει να κληθεί το majorityConsentInit function που αναπτύσσεται στο PSC (καλείται από το ενδιαφερόμενο Smart Contract, όχι τον Client!).
-// Όταν ένα Voting ολοκληρώνεται, τότε το PSC καλεί το majorityUpdate function το οποίο ΕΙΝΑΙ ΑΠΑΡΑΙΤΗΤΟ να βρίσκεται σε κάθε Smart Contract για το οποίο μπορούν να δημιουργούνται Votings (TMSC/LSC)
-
-// Όταν ένας Client επιθυμεί να ψηφίσει σε ενα Voting, καλεί το majorityClientVote function που βρίσκεται στο PSC
-// Όταν ολοκληρώνεται ένα Voting, πρέπει να κληθεί το updateElection function που βρίσκεται στο PSC (καλείται από το Inter-Blockchain API)
+//A Voting consists of two components: the Smart Contract that initiates the Voting (TMSC / LSC) and the Smart Contract that administers the Votings (PSC)
+//To initiate a vote, the majorityConsentInit function developed in the PSC must be invoked (by the concerned Smart Contract, not the Client!).
+//When a Voting is complete, the PSC invokes the majorityUpdate function, which MUST be included in any Smart Contract that supports Votings (TMSC / LSC).
+//When a Client wishes to vote in a Voting, the Client invokes the majorityClientVote function on the PSC
+//When voting is complete, the PSC's updateElection function must be called (called by the Inter-Blockchain API) 
 
 // MAIN FUNCTIONS
 
