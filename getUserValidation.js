@@ -1,16 +1,12 @@
-// Το συγκεκριμένο Function δέχεται ένα userCerts Array
-// Σε αυτό, υπάρχουν εμφωλευμένα τα Certificates που χρησιμοποίησε ένας Client προκειμένου να ολοκληρώσει ένα request.
-// Κάθε Client είναι υποχρεωμένος να στέλνει το κύριο Certificate (masterCert) που χρησιμοποίησε και το οποίο είναι ίδιο με το Certificate που χρησιμοποίησε
-// για το Endorse/Commit του request, καθώς και τα επιμέρους Certificates (Combined), σε περίπτωση που έκανε χρήση επιπλέον Identities
-// Αρχικά, ο Client υπογράφει τα απεσταλμένα certificates (master + combined) με το private key του masterCert, προκειμένου να δημιουργήσει ένα signed payload για το οποίο θα πρέπει να αποδείξει ότι είναι
-// ο κάτοχος του κλειδιού με το οποίο αυτό έγινε signed.
-// Στη συνέχεια, και για κάθε combined Identity, υπογράφει το ανωτέρω signature προκειμένου να αποδείξει ότι διαθέτει τα private keys του κάθε combined identity.
-// Έτσι, δημιουργείται μία αδιάσπαστη αλυσίδα από υπογεγραμμένα certificates για τα οποία ο client αποδεικνύει ότι γνωρίζει τα private keys τους καθώς επίσης και ότι είναι η οντότητα
-// η οποία δημιούργησε το συγκεκριμένο userCerts payload.
-// Για τον έλεγχο της ανωτέρω διαδικασίας καλείται το validateUserCerts helper function.
-// Αφού ολοκληρωθεί η διαδικασία αυτή, καλείται το removeSignaturesFromUserCerts helper function προκειμένου να αφαιρεθούν τα signatures από το payload και να απομείνουν σε αυτό
-// μόνο τα απεσταμένα certificates (Master + Combined). Αυτό γίνεται διότι, αφότου ολοκληρωθεί η διαδικασία του ελέγχου των signatures, τα signatures παύουν να μας ενδιαφέρουν πλέον,
-// οπότε και τα αφαιρούμε για την πιο εύκολη διαχείριση του payload.
+//This function accepts an array of userCerts.
+//It contains the Certificates used by a Client to complete a request.
+//Each Client is required to submit the main Certificate (masterCert), which must be identical to the Certificate used to Endorse / Commit the request, as well as the individual Certificates (Combined), in the event that he used additional Identities.
+//To begin, the Client signs the sent certificates (master + combined) using masterCert's private key in order to create a signed payload for which he must prove that he owns the key used to sign it.
+//Then, for each combined identity, he signs the above signature to demonstrate that he possesses the combined identity's private keys.
+//This establishes an unbroken chain of signed certificates for which the client demonstrates that he is both familiar with their private keys and the entity that created the userCerts payload.
+//To control the preceding process, the validateUserCerts helper function is invoked.
+//Once this process is complete, the helper function removeSignaturesFromUserCerts is invoked to remove all signatures from the payload, leaving only remote certificates (Master + Combined).
+//This is because, once the signature control process is complete, we remove the signatures to facilitate payload management. 
 
 
 // MAIN FUNCTION
