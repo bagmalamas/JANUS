@@ -1,3 +1,7 @@
+Note that in this repository you will find the code for the main functions of Janus system. The full reprodicable demo can been found in CENSUS/Janus repository.
+
+System description
+
 The Janus platform allows stakeholders from different domains that have a shared interest in sensitive data or critical functions, to securely access these, in a manner that is auditable by any stakeholder. Organizations that are stakeholders, may establish policies for the automatic access to their systems and information, based on a requester's characteristics. Such characteristics may be dynamically appointed to a subject by the subject's affiliated stakeholder. Moreover, it is possible for stakeholders of a given domain to establish a domain-wide access policy.
 
 The platform is based on an HMBAC (hierarchical multi-blockchain access control) system, where subjects use ABE (Attribute-Based Encryption) keys to gain access to information. Please note that subject access to the platform requires user authentication through credentials that are not related to the ABE keys, and which can be easily revoked if required. The following diagram provides a high level overview of the platform.
